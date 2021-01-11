@@ -1,8 +1,10 @@
 package com.zjx.learn.site.controller;
 
 import com.zjx.learn.log.LogTest;
+import com.zjx.learn.site.dao.FakeIndexTest;
 import org.slf4j.Logger;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -13,11 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
  **/
 @RestController
 public class SiteController {
-    final
-    LogTest logTest;
+    public final LogTest logTest;
+    public final FakeIndexTest fakeIndexTest;
 
-    public SiteController(LogTest logTest) {
+    public SiteController(LogTest logTest,FakeIndexTest fakeIndexTest) {
         this.logTest = logTest;
+        this.fakeIndexTest = fakeIndexTest;
     }
 
     @GetMapping("test")
@@ -31,5 +34,11 @@ public class SiteController {
         Logger logger = logTest.logger;
         System.out.println(logger.getClass());
         System.out.println("aaa");
+    }
+
+    @GetMapping("fake")
+    public String fake() {
+        fakeIndexTest.fake();
+        return "success";
     }
 }

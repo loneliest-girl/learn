@@ -1,8 +1,18 @@
+## 服务 ##
 server:
   port: 1000
 
+## 日志 ##
 logging:
   file:
     path: D:/log
   level:
     root : error
+
+## 数据库 ##
+spring:
+  datasource:
+    username: root
+    password: zhu343000
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/learn?serverTimezone=UTC
