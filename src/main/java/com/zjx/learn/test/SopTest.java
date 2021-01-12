@@ -20,5 +20,6 @@ public class SopTest {
         String s = timestamp.toString();
         System.out.println(s);
         System.out.println(new Timestamp(new Date().getTime()));
+        System.out.println(new Date().getTime());
     }
 }

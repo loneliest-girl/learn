@@ -6,8 +6,6 @@ server:
 logging:
   file:
     path: D:/log
-  level:
-    root : error
 
 ## 数据库 ##
 spring:

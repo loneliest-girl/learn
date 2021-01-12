@@ -1,10 +1,12 @@
 package com.zjx.learn.site.controller;
 
+import com.zjx.learn.dataBase.FxTest;
+import com.zjx.learn.dataBase.IndexTest;
 import com.zjx.learn.log.LogTest;
 import com.zjx.learn.site.dao.FakeIndexTest;
 import org.slf4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -15,12 +17,16 @@ import org.springframework.web.bind.annotation.RestController;
  **/
 @RestController
 public class SiteController {
+    public final FxTest fxTest;
     public final LogTest logTest;
     public final FakeIndexTest fakeIndexTest;
+    public final IndexTest indexTest;
 
-    public SiteController(LogTest logTest,FakeIndexTest fakeIndexTest) {
+    public SiteController(LogTest logTest, FakeIndexTest fakeIndexTest, IndexTest indexTest, FxTest fxTest) {
         this.logTest = logTest;
         this.fakeIndexTest = fakeIndexTest;
+        this.indexTest = indexTest;
+        this.fxTest = fxTest;
     }
 
     @GetMapping("test")
@@ -39,6 +45,18 @@ public class SiteController {
     @GetMapping("fake")
     public String fake() {
         fakeIndexTest.fake();
+        return "success";
+    }
+
+    @GetMapping("indexTest")
+    public String indexTest() {
+        indexTest.createIndex();
+        return "success";
+    }
+
+    @GetMapping("pxTest")
+    public String pxTest() {
+        fxTest.fxTest();
         return "success";
     }
 }
