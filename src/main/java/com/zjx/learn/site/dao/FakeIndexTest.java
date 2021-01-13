@@ -1,14 +1,15 @@
 package com.zjx.learn.site.dao;
 
 import com.github.javafaker.Faker;
+import com.zjx.returnResult.ReturnResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
 import java.util.Locale;
+import java.util.UUID;
 
 /**
  * @program: learn
@@ -26,21 +27,18 @@ public class FakeIndexTest {
     }
 
     @Transactional
-    public String fake() {
+    public ReturnResult<String> fake() {
         try {
             Faker faker = new Faker(Locale.CHINA);
             String s;
             for (long i = 0; i <= 1000; i++){
-                s = "'" + i + "','" + faker.name().name() +"','" +faker.phoneNumber().cellPhone() +"'";
+                s = "'" + UUID.randomUUID() + "','" + faker.name().name() +"','" +faker.phoneNumber().cellPhone() +"'";
                 jdbcTemplate.execute("insert into indexTest (id,name,phone) values (" + s + ")");
             }
-            return "success";
+            return new ReturnResult<>("success");
         } catch (Exception e) {
             logger.error(e.getMessage());
-            return "error";
-        } finally {
-
+            return new ReturnResult<>("error");
         }
-
     }
 }

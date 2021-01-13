@@ -1,5 +1,7 @@
 package com.zjx.learn.test;
 
+import com.zjx.test.JarTest;
+
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,5 +23,6 @@ public class SopTest {
         System.out.println(s);
         System.out.println(new Timestamp(new Date().getTime()));
         System.out.println(new Date().getTime());
+        System.out.println(JarTest.test());
     }
 }

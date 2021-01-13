@@ -4,8 +4,8 @@ import com.zjx.learn.dataBase.FxTest;
 import com.zjx.learn.dataBase.IndexTest;
 import com.zjx.learn.log.LogTest;
 import com.zjx.learn.site.dao.FakeIndexTest;
+import com.zjx.returnResult.ReturnResult;
 import org.slf4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -43,9 +43,8 @@ public class SiteController {
     }
 
     @GetMapping("fake")
-    public String fake() {
-        fakeIndexTest.fake();
-        return "success";
+    public ReturnResult<String> fake() {
+        return fakeIndexTest.fake();
     }
 
     @GetMapping("indexTest")
